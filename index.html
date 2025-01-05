@@ -79,7 +79,7 @@
       border: 2px solid gray;
       width: 80px;
       height: 80px;
-      background: url('/Images/Bullet.webp');
+      background: url('Images/Bullet.webp');
       background-size: 100%;
       background-repeat: no-repeat;
       opacity: 0.75;
@@ -238,11 +238,11 @@
     const gunFireImg = document.querySelector(".gun-fire");
     bloodImg.setAttribute("hidden", "True");
     gunFireImg.setAttribute("hidden", "true");
-    var bulletSound = new Audio("/Sounds/Bullet_Sound.mp3");
+    var bulletSound = new Audio("Sounds/Bullet_Sound.mp3");
     function bloodPosition(topV, leftV) {
       imgTag = document.createElement("img");
       imgTag.className = "Blood"
-      imgTag.setAttribute("src", "/Effects/Blood.webp");
+      imgTag.setAttribute("src", "Effects/Blood.webp");
       document.querySelector(".gameBox").append(imgTag);
       imgTag.style.top = Number(topV.split(/[^0-9]/)[0]) + 55 + "px";
       imgTag.style.left = Number(leftV.split(/[^0-9]/)[0]) - 30 + "px";
