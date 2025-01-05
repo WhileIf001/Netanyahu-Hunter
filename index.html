@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <script src="http://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+  <style>
+    :root {
+      --gun-change-back: url(Images/Guns/Gun_2.webp);
+      --gun: url(Images/Guns/Gun_1.webp);
+      --top: -220px;
+    }
+    body.change-gun {
+      --gun-change-back: url(Images/Guns/Gun_1.webp);
+      --gun: url(Images/Guns/Gun_2.webp);
+      --top: -250px;
+    }
+    .gameBox {
+      max-width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .Gun {
+      position: relative;
+      min-width: 100%;
+      height: 250px;
+      top: var(--top);
+      overflow: hidden;
+    }
+    .gun-img {
+      background: var(--gun);
+      background-size: 100%;
+      background-repeat: no-repeat;
+      width: 250px;
+      height: 250px;
+      position: absolute;
+      right: -50px;
+    }
+    .Blood {
+      width: 7%;
+      height: 60px;
+      position: absolute;
+      margin: 4% 0px 0px 7%;
+    }
+    
+    .btns {
+      position: relative;
+    }
+    .Buttons {
+      width: 50%;
+    }
+    .left,
+    .right,
+    .top,
+    .bottom {
+      background: none;
+      border: none;
+      opacity: 0.75;
+      font-size: 50px;
+      margin: 20px;
+    }
+
+    .top:active,
+    .right:active,
+    .bottom:active,
+    .left:active {
+      opacity: 0.5;
+    }
+    .lr {
+     transform: rotate(90deg);
+     position: absolute;
+    }
+
+    .Fire {
+      border-radius: 50%;
+      border: 2px solid gray;
+      width: 80px;
+      height: 80px;
+      background: url('/Images/Bullet.webp');
+      background-size: 100%;
+      background-repeat: no-repeat;
+      opacity: 0.75;
+    }
+
+    .Fire:active {
+      opacity: 0.5;
+      border: 2px dashed red;
+    }
+    .targetSign {
+      font-size: 3rem;
+      color: red;
+    }
+    .main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: -250px;
+    }
+    .gun-fire {
+      position: absolute;
+      width: 70px;
+      animation: gunFireAnim 0.02s linear forwards;
+    }
+    .gunChange {
+      min-width: 20%;
+      min-height: 70px;
+      background: var(--gun-change-back);
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: top;
+      border-radius: 30%;
+      border: 2px dashed white;
+    }
+    
+    .gun-btns {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-height: 280px;
+    }
+
+    .gunChange:active {
+      border: 2px solid red;
+    }
+    
+    .image img {
+      width: 100%;
+      height: 560px;
+    }
+    
+    .gun-img{
+      width: 250px;
+    }
+
+    @keyframes gunFireAnim {
+      0% {
+        opacity: 1
+      }
+
+      100% {
+        opacity: 0
+      }
+    }
+    @media (min-width: 768px){
+      :root {
+        --top: -390px;
+      }
+      body.change-gun {
+        --top: -400px;
+      }
+      .targetSign {
+        margin: 35px;
+       font-size: 9rem;
+      }
+      .left,
+      .right,
+      .top,
+      .bottom {
+        font-size: 200px;
+        margin: 50px;
+      }
+      .lr {
+        top: 10px;
+      }
+      .gun-fire {
+        width: 140px;
+      }
+      .Blood {
+        height: 170px;
+      }
+      .Fire, .gunChange {
+        min-width: 150px;
+        min-height: 150px;
+      }
+      .Fire {
+        max-height: 100px;
+        width: 100px;
+      }
+      .Gun {
+        height: 400px;
+      }
+      .gun-img{
+        width: 600px;
+        height: 450px;
+        right: -90px;
+      }
+      .image img {
+        height: 1200px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="gameBox">
+    <div style="position: relative" class="image">
+      <img src="Images/Game_Image.png" />
+    </div>
+    <div class="Gun">
+      <div class="gun-img"></div>
+      <img class="gun-fire" src="Effects/Gun_fire.webp"/>
+    </div>
+    <img class="Blood" src="Effects/Blood.webp" />
+    <p class="targetSign" style="position:absolute;top: 50px;left: 100px">+</p>
+    <section class="main">
+      <div class="Buttons">
+      <div class="btns">
+        <div class="lr">
+          <button class="left"><</button>
+          <button class="right">></button>
+        </div>
+        <div class="bt">
+          <button class="bottom"><</button>
+          <button class="top">></button>
+        </div>
+      </div>
+    </div>
+    <section class="gun-btns">
+      <p style="margin: 0; font-size: 15px">Change Gun</p>
+      <button class="gunChange"></button>
+      <button class="Fire"></button>
+    </section>
+    </section>
+  </div>
+  <script>
+    const topB = document.querySelector(".top");
+    const bottomB = document.querySelector(".bottom");
+    const leftB = document.querySelector(".left");
+    const rightB = document.querySelector(".right");
+    const fireB = document.querySelector(".Fire");
+    const bloodImg = document.querySelector(".Blood");
+    const targetSign = document.querySelector(".targetSign");
+    const gunChange = document.querySelector(".gunChange");
+    const Body = document.querySelector("body");
+    const gunFireImg = document.querySelector(".gun-fire");
+    bloodImg.setAttribute("hidden", "True");
+    gunFireImg.setAttribute("hidden", "true");
+    var bulletSound = new Audio("/Sounds/Bullet_Sound.mp3");
+    function bloodPosition(topV, leftV) {
+      imgTag = document.createElement("img");
+      imgTag.className = "Blood"
+      imgTag.setAttribute("src", "/Effects/Blood.webp");
+      document.querySelector(".gameBox").append(imgTag);
+      imgTag.style.top = Number(topV.split(/[^0-9]/)[0]) + 55 + "px";
+      imgTag.style.left = Number(leftV.split(/[^0-9]/)[0]) - 30 + "px";
+    }
+    topB.addEventListener("click", () => {
+      if (!targetSign.style.left) {
+        topPosition = 0 + "px"
+      } else {
+        topPosition = targetSign.style.left;
+      }
+      topValue = Number(topPosition.split(/[^0-9]/)[0])
+      topValue += 10
+      targetSign.style.left = topValue + "px"
+    });
+    bottomB.addEventListener("click", () => {
+      if (!targetSign.style.left) {
+        bottomPosition = 0 + "px";
+      }
+      else {
+        bottomPosition = targetSign.style.left;
+      }
+      bottomValue = Number(bottomPosition.split(/[^0-9]/)[0])
+      bottomValue -= 10
+      targetSign.style.left = bottomValue + "px"
+    });
+    leftB.addEventListener("click", () => {
+      if (!targetSign.style.top) {
+        leftPosition = 0 + "px";
+      }
+      else {
+        leftPosition = targetSign.style.top;
+      }
+      leftValue = Number(leftPosition.split(/[^0-9]/)[0])
+      leftValue -= 10
+      targetSign.style.top = leftValue + "px"
+    });
+    rightB.addEventListener("click", () => {
+      if (!targetSign.style.top) {
+        rightPosition = 0 + "px";
+      }
+      else {
+        rightPosition = targetSign.style.top;
+      }
+      rightValue = Number(rightPosition.split(/[^0-9]/)[0])
+      rightValue += 10
+      targetSign.style.top = rightValue + "px"
+    });
+    gunChange.addEventListener("click", () => {
+      Body.classList.toggle("change-gun")
+    })
+    fireB.addEventListener("click", () => {
+      bulletSound.play()
+      if (Body.className) {
+      gunFireImg.style.top = -9 + "%";
+      gunFireImg.style.right = 49 + "%";
+      gunFireImg.style.transform = "rotate(-60deg)"
+      } else {
+      gunFireImg.style.top = -10 + "%";
+      gunFireImg.style.right = 45 + "%";
+      gunFireImg.style.transform = "rotate(-70deg)"
+      }
+      setTimeout(() => {
+      gunFireImg.removeAttribute('hidden')
+      }, 100);
+      gunFireImg.setAttribute("hidden","true");
+      bloodPosition(targetSign.style.top, targetSign.style.left)
+    })
+  </script>
+</body>
+
+</html>
