@@ -61,6 +61,7 @@
       opacity: 0.75;
       font-size: 50px;
       margin: 20px;
+      color: red;
     }
 
     .top:active,
@@ -97,7 +98,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: -250px;
+      margin-top: -440px;
     }
     .gun-fire {
       position: absolute;
@@ -113,6 +114,7 @@
       background-position: top;
       border-radius: 30%;
       border: 2px dashed white;
+      z-index: 1;
     }
     
     .gun-btns {
@@ -128,7 +130,7 @@
     
     .image img {
       width: 100%;
-      height: 560px;
+      height: 100vh;
     }
     
     .gun-img{
@@ -151,15 +153,12 @@
       body.change-gun {
         --top: -400px;
       }
-      .image img {
-        height: 500px;
-      }
       .targetSign {
         margin: 35px;
         font-size: 9rem;
       }
       .main {
-        margin-top: -300px;
+        margin-top: -650px;
       }
       .left,
       .right,
